@@ -1,0 +1,1 @@
+./scripts/rstakeout "erl -make all; /usr/local/lib/erlang/lib/erunit-0.1.2/bin/erunit test" "**/*.erl"
