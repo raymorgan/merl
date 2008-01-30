@@ -151,6 +151,24 @@ namespaced_resources_should_match() ->
       Expects = [{namespace, admin}, {controller, posts}, {action, index}],
       Actual = merl.router:match(routes(), "/admin/posts", get),
       assertEquals(Expects, Actual)
+    end),
+    
+    test("GET to /moderator/posts", fun() ->
+      Expects = [{namespace, moderator}, {controller, posts}, {action, index}],
+      Actual = merl.router:match(routes(), "/moderator/posts", get),
+      assertEquals(Expects, Actual)
+    end),
+    
+    test("GET to /moderator/comments", fun() ->
+      Expects = [{namespace, moderator}, {controller, comments}, {action, index}],
+      Actual = merl.router:match(routes(), "/moderator/comments", get),
+      assertEquals(Expects, Actual)
+    end),
+    
+    test("GET to /moderator/report/by-date/2007", fun() ->
+      Expects = [{namespace, moderator}, {controller, report}, {action, by_date}, {year, '2007'}],
+      Actual = merl.router:match(routes(), "/moderator/report/by-date/2007", get),
+      assertEquals(Expects, Actual)
     end)
   ].
   
@@ -201,6 +219,11 @@ routes() ->
     {resources, posts},
     {resource, theme},
     {namespace, admin, {resources, posts}},
+    {namespace, moderator, [
+      {resources, posts},
+      {resources, comments},
+      {add, {"/report/by-date/:year", [{controller, report}, {action, by_date}]}}
+    ]},
     
     {add, {"/report/by-date/:year", [{controller, report}, {action, by_date}]}},
     {add, {"/report/by-date/:year/:month", [{controller, report}, {action, by_date}]}},

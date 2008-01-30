@@ -3,10 +3,12 @@
 
 -export ([namespace/4]).
 
+namespace(Name, Route, Namespace, Method) when is_tuple(Route) ->
+  namespace(Name, [Route], Namespace, Method);
 namespace(Name, Route, [Namespace|Namespaced_path], Method) ->
   case Namespace =:= Name of
     true ->
-      case merl.router:build(Namespaced_path, Method, [Route]) of
+      case merl.router:build(Namespaced_path, Method, Route) of
         no_match -> no_match;
         V -> merl.tuple_list:merge([{namespace, Namespace}], V)
       end;
