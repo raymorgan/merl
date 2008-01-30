@@ -1,2 +1,4 @@
 code:add_patha("./ebin").
-code:add_patha("../vendor/erunit/ebin").
+code:add_pathz("./test/ebin").
+code:add_pathz("../vendor/erunit/ebin").
+code:add_pathz("../vendor/eunit/ebin").
