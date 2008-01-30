@@ -22,43 +22,43 @@ tests() ->
 resources_routes_should_match() ->
   [
     test("GET to /posts", fun() ->
-      Expects = [{controller, posts}, {action, index}],
+      Expects = {match, [{controller, posts}, {action, index}]},
       Actual = merl.router:match(routes(), "/posts", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /posts/1", fun() ->
-      Expects = [{controller, posts}, {action, show}, {id, '1'}],
+      Expects = {match, [{controller, posts}, {action, show}, {id, '1'}]},
       Actual = merl.router:match(routes(), "/posts/1", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /posts/new", fun() ->
-      Expects = [{controller, posts}, {action, new}],
+      Expects = {match, [{controller, posts}, {action, new}]},
       Actual = merl.router:match(routes(), "/posts/new", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /posts/1/edit", fun() ->
-      Expects = [{controller, posts}, {action, edit}, {id, '1'}],
+      Expects = {match, [{controller, posts}, {action, edit}, {id, '1'}]},
       Actual = merl.router:match(routes(), "/posts/1/edit", get),
       assertEquals(Expects, Actual)
     end),
     
     test("POST to /posts", fun() ->
-      Expects = [{controller, posts}, {action, create}],
+      Expects = {match, [{controller, posts}, {action, create}]},
       Actual = merl.router:match(routes(), "/posts", post),
       assertEquals(Expects, Actual)
     end),
     
     test("PUT to /posts/1", fun() ->
-      Expects = [{controller, posts}, {action, update}, {id, '1'}],
+      Expects = {match, [{controller, posts}, {action, update}, {id, '1'}]},
       Actual = merl.router:match(routes(), "/posts/1", put),
       assertEquals(Expects, Actual)
     end),
     
     test("DELETE to /posts/1", fun() ->
-      Expects = [{controller, posts}, {action, destroy}, {id, '1'}],
+      Expects = {match, [{controller, posts}, {action, destroy}, {id, '1'}]},
       Actual = merl.router:match(routes(), "/posts/1", delete),
       assertEquals(Expects, Actual)
     end)
@@ -100,37 +100,37 @@ bad_resources_routes_should_not_match() ->
 resource_routes_should_match() ->
   [
     test("GET to /theme", fun() ->
-      Expects = [{controller, theme}, {action, index}],
+      Expects = {match, [{controller, theme}, {action, index}]},
       Actual = merl.router:match(routes(), "/theme", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /theme/new", fun() ->
-      Expects = [{controller, theme}, {action, new}],
+      Expects = {match, [{controller, theme}, {action, new}]},
       Actual = merl.router:match(routes(), "/theme/new", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /theme/edit", fun() ->
-      Expects = [{controller, theme}, {action, edit}],
+      Expects = {match, [{controller, theme}, {action, edit}]},
       Actual = merl.router:match(routes(), "/theme/edit", get),
       assertEquals(Expects, Actual)
     end),
     
     test("POST to /theme", fun() ->
-      Expects = [{controller, theme}, {action, create}],
+      Expects = {match, [{controller, theme}, {action, create}]},
       Actual = merl.router:match(routes(), "/theme", post),
       assertEquals(Expects, Actual)
     end),
     
     test("PUT to /theme", fun() ->
-      Expects = [{controller, theme}, {action, update}],
+      Expects = {match, [{controller, theme}, {action, update}]},
       Actual = merl.router:match(routes(), "/theme", put),
       assertEquals(Expects, Actual)
     end),
     
     test("DELETE to /theme", fun() ->
-      Expects = [{controller, theme}, {action, destroy}],
+      Expects = {match, [{controller, theme}, {action, destroy}]},
       Actual = merl.router:match(routes(), "/theme", delete),
       assertEquals(Expects, Actual)
     end)
@@ -148,25 +148,25 @@ bad_resource_routes_should_not_match() ->
 namespaced_resources_should_match() ->
   [
     test("GET to /admin/posts", fun() ->
-      Expects = [{namespace, admin}, {controller, posts}, {action, index}],
+      Expects = {match, [{namespace, admin}, {controller, posts}, {action, index}]},
       Actual = merl.router:match(routes(), "/admin/posts", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /moderator/posts", fun() ->
-      Expects = [{namespace, moderator}, {controller, posts}, {action, index}],
+      Expects = {match, [{namespace, moderator}, {controller, posts}, {action, index}]},
       Actual = merl.router:match(routes(), "/moderator/posts", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /moderator/comments", fun() ->
-      Expects = [{namespace, moderator}, {controller, comments}, {action, index}],
+      Expects = {match, [{namespace, moderator}, {controller, comments}, {action, index}]},
       Actual = merl.router:match(routes(), "/moderator/comments", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /moderator/report/by-date/2007", fun() ->
-      Expects = [{namespace, moderator}, {controller, report}, {action, by_date}, {year, '2007'}],
+      Expects = {match, [{namespace, moderator}, {controller, report}, {action, by_date}, {year, '2007'}]},
       Actual = merl.router:match(routes(), "/moderator/report/by-date/2007", get),
       assertEquals(Expects, Actual)
     end)
@@ -175,7 +175,7 @@ namespaced_resources_should_match() ->
 default_route() ->
   [
     test("GET to '/'", fun() ->
-      Expects = [{controller, about}, {action, index}],
+      Expects = {match, [{controller, about}, {action, index}]},
       Actual = merl.router:match(routes(), "/", get),
       assertEquals(Expects, Actual)
     end)
@@ -184,13 +184,13 @@ default_route() ->
 custom_routes_should_match() ->
   [
     test("GET to /report/by-date/2007", fun() ->
-      Expects = [{controller, report}, {action, by_date}, {year, '2007'}],
+      Expects = {match, [{controller, report}, {action, by_date}, {year, '2007'}]},
       Actual = merl.router:match(routes(), "/report/by-date/2007", get),
       assertEquals(Expects, Actual)
     end),
     
     test("GET to /report/by-date/2007/11", fun() ->
-      Expects = [{controller, report}, {action, by_date}, {year, '2007'}, {month, '11'}],
+      Expects = {match, [{controller, report}, {action, by_date}, {year, '2007'}, {month, '11'}]},
       Actual = merl.router:match(routes(), "/report/by-date/2007/11", get),
       assertEquals(Expects, Actual)
     end)

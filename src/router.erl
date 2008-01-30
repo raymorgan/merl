@@ -12,7 +12,10 @@
 -import (merl.router.namespace, [namespace/4]).
 
 match(Routes, Path, Method) ->
-  build(split_path(Path), Method, Routes).
+  case build(split_path(Path), Method, Routes) of
+    no_match -> no_match;
+    V -> {match, V}
+  end.
     
 build(_Path, _Method, []) -> no_match;
 
