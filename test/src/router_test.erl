@@ -10,5 +10,5 @@
 my_test_() -> [
     ?it("should ensure 1 is 1",
       {expects, 1},
-      {actual, 2})
+      {actual, 1})
   ].

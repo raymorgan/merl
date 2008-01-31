@@ -1,1 +1,1 @@
-./scripts/rstakeout "erl -make all; ./../vendor/erunit/bin/erunit test" "**/*.erl"
+./scripts/rstakeout "erl -make all; ./scripts/eunit test" "**/*.erl"
