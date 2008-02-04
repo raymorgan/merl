@@ -3,4 +3,4 @@ code:add_pathz("./spec/ebin").
 
 
 
-code:add_pathz("~/apps/erlang/espec/ebin").
+code:add_pathz("../espec/ebin").

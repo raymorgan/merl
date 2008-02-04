@@ -69,7 +69,7 @@ loop do
     results = `#{command}`
     puts results
 
-    results.include?("fail") ? growl_fail("") : growl_pass("")
+    results.include?("Failed!") ? growl_fail("") : growl_pass("")
 
     puts "=> done"
   end
