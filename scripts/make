@@ -1,0 +1,1 @@
+erl -make all
