@@ -5,3 +5,7 @@
 %% Tests %%
 
 { "test/src/*", [{outdir, "test/ebin"}] }.
+
+%% Specs %%
+
+{ "spec/src/*", [{outdir, "spec/ebin"}] }.

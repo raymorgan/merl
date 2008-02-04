@@ -1,0 +1,2 @@
+#!/bin/sh
+erl -noshell -s espec_suite main $1 -s init stop
