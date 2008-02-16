@@ -1,8 +1,3 @@
-rm -rf ebin;
-rm -rf spec/ebin;
-mkdir ebin;
-mkdir ebin/merl;
-mkdir ebin/merl/router;
-mkdir spec/ebin;
+./scripts/clean
 
 erl -make all;
